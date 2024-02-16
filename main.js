@@ -7,6 +7,14 @@ let filterList = [];
 let underLine = document.getElementById("under-line");
 
 addButton.addEventListener("click", addTask);
+
+/*
+
+*/
+
+taskInput.addEventListener("focus", function () {
+  taskInput.value = "";
+});
 taskInput.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
     addTask();
@@ -23,6 +31,9 @@ for (let i = 1; i < tabs.length; i++) {
 }
 
 function addTask() {
+  if (taskInput.value == "") {
+    return alert("할일을 추가해주세요");
+  }
   let task = {
     id: randomIDGenerate(),
     taskContent: taskInput.value,
@@ -30,6 +41,7 @@ function addTask() {
   };
   taskList.push(task);
   console.log(taskList);
+
   render();
 }
 
